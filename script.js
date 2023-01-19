@@ -15,7 +15,7 @@ function solve(op){
         show(a,b,op,res);
     }
     else{
-        show(-1,-1,op,res);
+        show(-1,-1,op,null);
     }
 }
 //--------------Store Method is used to store the operands,operator and result data in LOCAL STORAGE-----------
