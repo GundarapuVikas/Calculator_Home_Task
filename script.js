@@ -1,68 +1,70 @@
+//------------Solve Method performs operation requested--------------------
+function solve(op){
+    let a=document.getElementById("a").value;
+    let b=document.getElementById("b").value;
+    if(a!="" && b!=""){
+        let res=0;
+        switch(op){
+            case '+': res=Number(a)+Number(b); break;
+            case '-': res=Number(a)-Number(b); break;
+            case '*': res=Number(a)*Number(b); break;
+            case '/': res=Number(a)/Number(b); break;
+        }
+        document.getElementById("res").value=res;
+        store(a,b,op,res);
+        show(a,b,op,res);
+    }
+    else{
+        show(-1,-1,op,res);
+    }
+}
+//--------------Store Method is used to store the operands,operator and result data in LOCAL STORAGE-----------
 function store(a, b, op, res) {
     localStorage.setItem("first_number", a);
     localStorage.setItem("second_number", b);
     localStorage.setItem("operation", op);
     localStorage.setItem("result", res);
 }
-function show(){
-    op=localStorage.getItem("operation")
-    var operation="";
-    switch(op){
-        case '+': operation="sum"; break;
-        case '-': operation="difference"; break;
-        case '*': operation="product"; break;
-        case '/': operation="division"; break;
-    }
-    document.getElementById("desp").innerHTML="😀: The "+operation+" of "+localStorage.getItem("first_number")+" and "+localStorage.getItem("second_number")+" is "+localStorage.getItem("result")+" 🎉";
-}
-function add() {
-    let a = document.getElementById("a").value;
-    let b = document.getElementById("b").value;
-    let temp = Number(a) + Number(b);
-    document.getElementById("res").value = temp;
-    store(a, b, '+', temp);
-    show();
-}
-function diff() {
-    let a = document.getElementById("a").value;
-    let b = document.getElementById("b").value;
-    let temp = Number(a) - Number(b);
-    document.getElementById("res").value = temp;
-    store(a, b, '-', temp);
-    show();
-}
-function product() {
-    let a = document.getElementById("a").value;
-    let b = document.getElementById("b").value;
-    let temp = Number(a) * Number(b);
-    document.getElementById("res").value = temp;
-    store(a, b, '*', temp);
-    show();
-}
-function divide() {
-    let a = document.getElementById("a").value;
-    let b = document.getElementById("b").value;
-    let temp = Number(a) / Number(b);
-    document.getElementById("res").value = temp;
-    store(a, b, '/', temp);
-    show();
-}
-function clr() {
-    if(document.getElementById("a").value!="" && document.getElementById("b").value!="" && document.getElementById("res").value!=""){
-        document.getElementById("a").value = "";
-        document.getElementById("b").value = "";
-        document.getElementById("res").value = "";
+//------------Show Method is used to display the description of the status of operation-------------------
+function show(a,b,op,res){
+    if(a=="" && b==""){
         document.getElementById("desp").innerHTML="Perform any Operation☹️..."
-        var table=document.getElementById("hist_table");
-        var row=table.insertRow(1);
-        var cell1=row.insertCell(0);
-        var cell2=row.insertCell(1);
-        var cell3=row.insertCell(2);
-        var cell4=row.insertCell(3);
-        cell1.innerHTML=localStorage.getItem("first_number");
-        cell2.innerHTML=localStorage.getItem("operation");
-        cell3.innerHTML=localStorage.getItem("second_number");
-        cell4.innerHTML=localStorage.getItem("result");
     }
+    else if(a!=-1 && b!=-1){
+        let operation="";
+        switch(op){
+            case '+': operation="sum"; break;
+            case '-': operation="difference"; break;
+            case '*': operation="product"; break;
+            case '/': operation="division"; break;
+        }
+        document.getElementById("desp").innerHTML="😀: The "+operation+" of "+a+" and "+b+" is "+res+" 🎉";
+    }
+    else{
+        document.getElementById("desp").innerHTML="Add operands 😒 and try again 👍."
+    }
+}
+//-----------Clear Method is used to clear the calculator and change the description---------------
+function clr() {
+    if(document.getElementById("res").value!="" && document.getElementById("a").value!="" && document.getElementById("b").value!=""){
+        add_to_history();
+    }
+    document.getElementById("a").value="";
+    document.getElementById("b").value="";
+    document.getElementById("res").value="";
+    show("","","","");
+}
+//--------------After the calculator is cleared the latest operation data is fetched from local storage and stored in history-----------------
+function add_to_history(){
+    let table=document.getElementById("hist_table");
+    let row=table.insertRow(1);
+    let cell1=row.insertCell(0);
+    let cell2=row.insertCell(1);
+    let cell3=row.insertCell(2);
+    let cell4=row.insertCell(3);
+    cell1.innerHTML=localStorage.getItem("first_number");
+    cell2.innerHTML=localStorage.getItem("operation");
+    cell3.innerHTML=localStorage.getItem("second_number");
+    cell4.innerHTML=localStorage.getItem("result");
 }
 
