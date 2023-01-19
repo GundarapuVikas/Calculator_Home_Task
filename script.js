@@ -48,18 +48,21 @@ function divide() {
     show();
 }
 function clr() {
-    document.getElementById("a").value = "";
-    document.getElementById("b").value = "";
-    document.getElementById("res").value = "";
-    document.getElementById("desp").innerHTML="Perform any Operation☹️..."
-    var table=document.getElementById("hist_table");
-    var row=table.insertRow(1);
-    var cell1=row.insertCell(0);
-    var cell2=row.insertCell(1);
-    var cell3=row.insertCell(2);
-    var cell4=row.insertCell(3);
-    cell1.innerHTML=localStorage.getItem("first_number");
-    cell2.innerHTML=localStorage.getItem("operation");
-    cell3.innerHTML=localStorage.getItem("second_number");
-    cell4.innerHTML=localStorage.getItem("result");
+    if(document.getElementById("a").value!="" && document.getElementById("b").value!="" && document.getElementById("res").value!=""){
+        document.getElementById("a").value = "";
+        document.getElementById("b").value = "";
+        document.getElementById("res").value = "";
+        document.getElementById("desp").innerHTML="Perform any Operation☹️..."
+        var table=document.getElementById("hist_table");
+        var row=table.insertRow(1);
+        var cell1=row.insertCell(0);
+        var cell2=row.insertCell(1);
+        var cell3=row.insertCell(2);
+        var cell4=row.insertCell(3);
+        cell1.innerHTML=localStorage.getItem("first_number");
+        cell2.innerHTML=localStorage.getItem("operation");
+        cell3.innerHTML=localStorage.getItem("second_number");
+        cell4.innerHTML=localStorage.getItem("result");
+    }
 }
+
