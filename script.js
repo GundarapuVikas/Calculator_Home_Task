@@ -58,13 +58,9 @@ function clr() {
 function add_to_history(){
     let table=document.getElementById("hist_table");
     let row=table.insertRow(1);
-    let cell1=row.insertCell(0);
-    let cell2=row.insertCell(1);
-    let cell3=row.insertCell(2);
-    let cell4=row.insertCell(3);
-    cell1.innerHTML=localStorage.getItem("first_number");
-    cell2.innerHTML=localStorage.getItem("operation");
-    cell3.innerHTML=localStorage.getItem("second_number");
-    cell4.innerHTML=localStorage.getItem("result");
+    row.insertCell(0).innerHTML=localStorage.getItem("first_number");
+    row.insertCell(1).innerHTML=localStorage.getItem("operation");
+    row.insertCell(2).innerHTML=localStorage.getItem("second_number");
+    row.insertCell(3).innerHTML=localStorage.getItem("result");
 }
 
