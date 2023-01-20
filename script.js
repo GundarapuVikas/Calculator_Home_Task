@@ -46,7 +46,7 @@ function show(a,b,op,res){
 }
 //-----------Clear Method is used to clear the calculator and change the description---------------
 function clr() {
-    if(document.getElementById("res").value!="" && document.getElementById("a").value!="" && document.getElementById("b").value!=""){
+    if(document.getElementById("res").value!=""){
         add_to_history();
     }
     document.getElementById("a").value="";
